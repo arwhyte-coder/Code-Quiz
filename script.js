@@ -1,7 +1,6 @@
-//VARIABLES
+//Variables
 // var body = document.body;
 var header = document.querySelector(".header");
-var score = document.getElementById("score");
 var submitButton = document.getElementById("submitButton");
 
 var quizQuestionHeader = document.getElementById("quizQuestionHeader");
@@ -27,31 +26,24 @@ var initialInput = document.getElementById("initialInput");
 var allDone = document.getElementById("complete");
 var allDoneButtons = document.getElementById("form-inline");
 
-var timer = document.getElementById("timer"); // Timer Variable 
+var timer = document.getElementById("timer"); 
 
-// QUIZ QUESTION ARRAY
+// Quiz Questions //
 var quizQuestions = [
   {
-  "quizQuestionHeader" : "Commonly used Data Types do NOT Include:", 
-  "one" : "1. strings",
-  "two" : "2. booleans",
-  "three" : "3. alerts",
-  "four" : "4. numbers",
-  "correct" : "3. alerts",
+  "quizQuestionHeader" : "Inside which HTML element do we put the JavaScript?:", 
+  "one" : "1. < js >",
+  "two" : "2. < javascript >",
+  "three" : "3. < scripting >",
+  "four" : "4. < script >",
+  "correct" : "4. < script >",
   },{
-  "quizQuestionHeader" : "The condition in an if / else statement is enclosed within ________.",
-  "one" : "1. quotes",
-  "two" : "2. curly brackets",
-  "three" : "3. parenthesis",
-  "four" : "4. square brackets",
-  "correct" : "3. parenthesis",
-  },{
-  "quizQuestionHeader" : "Arrays in JavaScript can be used to store ________.",
-  "one" : "1. numbers and strings",
-  "two" : "2. other arrays",
-  "three" : "3. booleans",
-  "four" : "4. all of the above",
-  "correct" : "4. all of the above",
+  "quizQuestionHeader" : "Where is the correct place to insert a JavaScript?:",
+  "one" : "1. The body section",
+  "two" : "2. The head section",
+  "three" : "3. The footer section",
+  "four" : "4. Both 1 and 2 are correct",
+  "correct" : "4. Both 1 and 2 are correct",
   },{
    "quizQuestionHeader" : "String values must be enclosed within ________ when being assigned to variables",
    "one" : "1. commas",
@@ -66,19 +58,25 @@ var quizQuestions = [
    "three" : "3. for loops",
    "four" : "4. console.log",
    "correct" : "4. console.log",
+  },{
+  "quizQuestionHeader" : "Arrays in JavaScript can be used to store ________.",
+  "one" : "1. numbers and strings",
+  "two" : "2. other arrays",
+  "three" : "3. booleans",
+  "four" : "4. all of the above",
+  "correct" : "4. all of the above",
   },
 ]
 
 var startScore = 0; 
 var questionIndex = 0;
 
-// FIRST PAGE 
+// First Page //
 function codeQuizChallenge() {
   quizChallengePage.style.display = "block"; // Shows Rules 
   header.style.display = "block"; // Shows Header
   quizQuestionsPage.style.display = "none"; // Hide Quiz Questions Page
-  finalScorePage.style.display = "none";   // Hide Final Core Page 
-
+  finalScorePage.style.display = "none";   // Hide Final Sore Page 
   var startScore = 0; // Starting time 
   timer.textContent = "Time: " + startScore; // Holder text in nav bar 
 }
@@ -89,11 +87,12 @@ function resetVariables() {
   questionIndex = 0;
 }
 
-// STARTS QUIZ 
+// Starts Quiz //
 function startQuiz() { 
 quizChallengePage.style.display = "none"; // Hide Rules 
 quizQuestionsPage.style.display = "block"; // Show Quiz Questions Page
 
+// Timer //
 secondsLeft = 80; // seconds in Timer 
 
   var timerInterval = setInterval(function() { 
@@ -121,7 +120,7 @@ function showQuestions() {
   choice4.setAttribute("data-answer", q.four);
 }
 
-// EVENT LISTENERS WHEN USER CLICKS ANSWERS 
+// Event listeners for when user clicks answer //
 showQuestions();
 choice1.addEventListener("click", function (event) {
   checkAnswer(event);
@@ -136,7 +135,7 @@ choice4.addEventListener("click", function (event) {
   checkAnswer(event);
 })
 
- // CHECK TO SEE IF ANSWER IS CORRECT
+ // To see if answer is correct or incorrect //
 function checkAnswer(event) {
   event.preventDefault();
 
@@ -147,9 +146,9 @@ function checkAnswer(event) {
       correctAnswer = answer;
   }
   if (answer === correctAnswer) {
-  answerResponse.textContent = "Correct!"; // If correct, say correct
+  answerResponse.textContent = "Correct!"; // If correct, say correct!
   } else {
-  answerResponse.textContent = "Incorrect!"; // If wrong, say wrong & deduct 10 points
+  answerResponse.textContent = "Incorrect!"; // If incorrect, say incorrect! & deduct 10 points
       secondsLeft -= 10
       if (secondsLeft < 0) {
           secondsLeft = 0;
@@ -163,7 +162,7 @@ function checkAnswer(event) {
   showQuestions();
 }
 
-// GO TO "ALL DONE" PAGE AND SHOW FINAL SCORE
+// Complete Page and show final score
 function showFinalScore() { //Function to go to page when time out or quiz complete 
   quizQuestionsPage.style.display = "none"; // Hide Questions Page
   highScoreButtons.style.display = "none"; // Hide Questions Page
@@ -180,9 +179,9 @@ function showFinalScore() { //Function to go to page when time out or quiz compl
 
 var highScoreArray = [] // Global variable 
 
-// SHOWS ALL HIGH SCORES 
+// Highscores //
 function showHighScores() {
-  header.style.display = "none"; // Hide header 
+  header.style.display = "block"; // Hide header 
   complete.style.display = "none"; // Hide all done
   finalScoreIs.style.display = "none" // Hide Final Score
   initials.style.display = "none" // Hide initial input
@@ -205,19 +204,13 @@ function showHighScores() {
 
 ////////////EVENT LISTENERS////////////////
 
-// START QUIZ - WORKS 
+// START QUIZ 
 submitButton.addEventListener("click", function() { 
   startQuiz()
   console.log("start")
 })
 
-// CLICK TO VIEW HIGH SCORES - DOES NOT WORK 
-score.addEventListener("click", function() {
-  showHighScores();
-  console.log("view high scores")
-})
-
-// CLICK INTIAL BUTTON TO SHOW HIGH SCORES - WORKS
+// CLICK INTIAL BUTTON TO SHOW HIGH SCORES
 initialButton.addEventListener("click", function() { 
   showHighScores();
   console.log("initial button")
@@ -228,7 +221,6 @@ clearHighScore.addEventListener("click", function() {
   localStorage.clear();
 })
 
-// Main Page BUTTON EVENT liSTENER - WORKS 
 mainPage.addEventListener("click", function() { // Main Page to the home page
   $("#highScoreList").empty() // clears out container
   $("#initialInput").val("") // clears out the value in initial input 
