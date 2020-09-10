@@ -1,5 +1,4 @@
-//Variables
-// var body = document.body;
+//Variables //
 var header = document.querySelector(".header");
 var submitButton = document.getElementById("submitButton");
 
@@ -23,8 +22,8 @@ var initialButton = document.getElementById("initialButton");
 var initials = document.getElementById("initials"); 
 var initialInput = document.getElementById("initialInput"); 
 
-var allDone = document.getElementById("complete");
-var allDoneButtons = document.getElementById("form-inline");
+var complete = document.getElementById("complete");
+var completeButtons = document.getElementById("form-inline");
 
 var timer = document.getElementById("timer"); 
 
@@ -77,11 +76,12 @@ function codeQuizChallenge() {
   header.style.display = "block"; // Shows Header
   quizQuestionsPage.style.display = "none"; // Hide Quiz Questions Page
   finalScorePage.style.display = "none";   // Hide Final Sore Page 
+
   var startScore = 0; // Starting time 
   timer.textContent = "Time: " + startScore; // Holder text in nav bar 
 }
 
-// RESETTING GLOBAL VARIABLES WHEN RESTART QUIZ 
+// RESETTING VARIABLES WHEN RESTART QUIZ  - NOT WORKING //
 function resetVariables() {
   startScore = 0; 
   questionIndex = 0;
@@ -92,7 +92,7 @@ function startQuiz() {
 quizChallengePage.style.display = "none"; // Hide Rules 
 quizQuestionsPage.style.display = "block"; // Show Quiz Questions Page
 
-// Timer //
+// TIMER - NOT STOPPING WHEN QUIZ IS FINISHED //
 secondsLeft = 80; // seconds in Timer 
 
   var timerInterval = setInterval(function() { 
@@ -105,7 +105,7 @@ secondsLeft = 80; // seconds in Timer
   }, 1000);
 }
 
-// SHOW QUESTIONS
+// Show Questions //
 function showQuestions() {
   var q = quizQuestions[questionIndex];
 
@@ -148,7 +148,7 @@ function checkAnswer(event) {
   if (answer === correctAnswer) {
   answerResponse.textContent = "Correct!"; // If correct, say correct!
   } else {
-  answerResponse.textContent = "Incorrect!"; // If incorrect, say incorrect! & deduct 10 points
+  answerResponse.textContent = "Incorrect!"; // If incorrect, say incorrect! & deduct 10 seconds
       secondsLeft -= 10
       if (secondsLeft < 0) {
           secondsLeft = 0;
@@ -162,7 +162,7 @@ function checkAnswer(event) {
   showQuestions();
 }
 
-// Complete Page and show final score
+// Complete Page and show final score //
 function showFinalScore() { //Function to go to page when time out or quiz complete 
   quizQuestionsPage.style.display = "none"; // Hide Questions Page
   highScoreButtons.style.display = "none"; // Hide Questions Page
@@ -177,7 +177,7 @@ function showFinalScore() { //Function to go to page when time out or quiz compl
     initials.textContent = "Enter Your Initials: "; // Form text
 } // end of showFinalScore
 
-var highScoreArray = [] // Global variable 
+var highScoreArray = [] 
 
 // Highscores //
 function showHighScores() {
@@ -202,25 +202,26 @@ function showHighScores() {
   $("#highScoreList").append(highScores) // Appends high score & initials
 }
 
-////////////EVENT LISTENERS////////////////
-
-// START QUIZ 
+// Start Quiz //
 submitButton.addEventListener("click", function() { 
   startQuiz()
   console.log("start")
 })
 
-// CLICK INTIAL BUTTON TO SHOW HIGH SCORES
+// Click initial button to show high score //
 initialButton.addEventListener("click", function() { 
   showHighScores();
   console.log("initial button")
 }) 
 
-// CLEAR HIGH SCORES - WORKS
+// CLEAR HIGH SCORES - NOT WORKING //
 clearHighScore.addEventListener("click", function() {
   localStorage.clear();
-})
+  $("#highScoreList").empty()
+  console.log
+  })
 
+// Main Page //
 mainPage.addEventListener("click", function() { // Main Page to the home page
   $("#highScoreList").empty() // clears out container
   $("#initialInput").val("") // clears out the value in initial input 
@@ -229,5 +230,5 @@ mainPage.addEventListener("click", function() { // Main Page to the home page
   console.log("restart quiz")
 })
 
-// Page starts at home page 
+// Page starts at home page //
 codeQuizChallenge(); 
