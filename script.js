@@ -214,7 +214,7 @@ initialButton.addEventListener("click", function() {
   console.log("initial button")
 }) 
 
-// CLEAR HIGH SCORES - NOT WORKING //
+// Clear High Scores //
 clearHighScore.addEventListener("click", function() {
   localStorage.clear();
   $("#highScoreList").empty()

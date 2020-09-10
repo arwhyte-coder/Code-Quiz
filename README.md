@@ -7,7 +7,6 @@ Once the user has completed the quiz their final score is the time left on the c
 # Notes
 Need to fix:
 - Timer needs to stop once you've answered all questions
-- Clear high scores needs to clear the high scores
 - Main page button needs to reset everything
 
 # Contents
