@@ -12,7 +12,7 @@ Need to fix:
 # Contents
 This app is composed of 3 pages index.html , style.css and script.js
 
-
-# Screenshots
+# Screenshot
+<img src="https://github.com/arwhyte-coder/Code-Quiz/issues/1#issue-697731964" alt="Screen Shot">
 
 # Links to the app

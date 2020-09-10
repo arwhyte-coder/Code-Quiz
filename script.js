@@ -25,7 +25,7 @@ var initialInput = document.getElementById("initialInput");
 var complete = document.getElementById("complete");
 var completeButtons = document.getElementById("form-inline");
 
-var timer = document.getElementById("timer"); 
+var timerInterval = document.getElementById("timer"); 
 
 // Quiz Questions //
 var quizQuestions = [
@@ -75,16 +75,10 @@ function codeQuizChallenge() {
   quizChallengePage.style.display = "block"; // Shows Rules 
   header.style.display = "block"; // Shows Header
   quizQuestionsPage.style.display = "none"; // Hide Quiz Questions Page
-  finalScorePage.style.display = "none";   // Hide Final Sore Page 
+  finalScorePage.style.display = "none";   // Hide Final Score Page 
 
   var startScore = 0; // Starting time 
   timer.textContent = "Time: " + startScore; // Holder text in nav bar 
-}
-
-// RESETTING VARIABLES WHEN RESTART QUIZ  - NOT WORKING //
-function resetVariables() {
-  startScore = 0; 
-  questionIndex = 0;
 }
 
 // Starts Quiz //
@@ -93,14 +87,14 @@ quizChallengePage.style.display = "none"; // Hide Rules
 quizQuestionsPage.style.display = "block"; // Show Quiz Questions Page
 
 // TIMER - NOT STOPPING WHEN QUIZ IS FINISHED //
-secondsLeft = 80; // seconds in Timer 
+secondsLeft = 80; // seconds in timer 
 
   var timerInterval = setInterval(function() { 
     secondsLeft--;
     timer.textContent = "Time: " + secondsLeft;
-    if (secondsLeft === 0 || quizQuestions.length === questionIndex) {
-      clearInterval(timerInterval);
-      showFinalScore();
+    if (secondsLeft == 0 || quizQuestions.length == questionIndex) {
+    clearInterval(timerInterval);
+    showFinalScore();
     }
   }, 1000);
 }
@@ -171,7 +165,7 @@ function showFinalScore() { //Function to go to page when time out or quiz compl
   initials.style.display = "block" // Show initial input
   initialButton.style.display = "block" // Show initial button
   initialInput.style.display = "block" // Show initial input
-
+  
     finalScoreIs.textContent = "Your final score is " + secondsLeft;
     initialButton.textContent = "Submit"; // Form button 
     initials.textContent = "Enter Your Initials: "; // Form text
@@ -202,6 +196,12 @@ function showHighScores() {
   $("#highScoreList").append(highScores) // Appends high score & initials
 }
 
+// RESETTING VARIABLES WHEN RESTART QUIZ  - NOT WORKING //
+function resetVariables() {
+  startScore = 0; 
+  questionIndex = 0;
+}
+
 // Start Quiz //
 submitButton.addEventListener("click", function() { 
   startQuiz()
@@ -222,10 +222,8 @@ clearHighScore.addEventListener("click", function() {
   })
 
 // Main Page //
-mainPage.addEventListener("click", function() { // Main Page to the home page
-  $("#highScoreList").empty() // clears out container
-  $("#initialInput").val("") // clears out the value in initial input 
-  resetVariables()
+mainPage.addEventListener("click", function() { // Return to main page //
+  resetVariables();
   codeQuizChallenge();
   console.log("restart quiz")
 })
